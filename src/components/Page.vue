@@ -11,20 +11,20 @@
             v-on:leave="fade1leave"
             v-on:after-leave="fade1afterLeave"
         >
-            <div class="box box1" ref="box1" v-show="activePage=='box1'?true:false">
+            <div class="box box1" ref="box1" v-if="activePage=='box1'?true:false">
                 <div class="left">
-                    <Block :subscribe="'/ATT/CH01/'" :url="streamUrl[0]" index='1' position='left' id="box1-left"></Block>
+                    <Block :title="titleArr[0]" :ip="ip1" :subscribe="'/ATT/CH01/'" :url="streamUrl[0]" index='1' position='left' id="box1-left"></Block>
                 </div>
                 <div class="mid">
-                    <Block :subscribe="'/ATT/CH02/'" :url="streamUrl[1]" index='2' position='mid' id="box1-mid"></Block>
+                    <Block :title="titleArr[1]" :ip="ip1" :subscribe="'/ATT/CH02/'" :url="streamUrl[1]" index='2' position='mid' id="box1-mid"></Block>
                 </div>
                 <div class="right">
-                    <Block :subscribe="'/ATT/CH03/'" :url="streamUrl[2]" index='3' position='right' id="box1-right"></Block>
+                    <Block :title="titleArr[2]" :ip="ip1" :subscribe="'/ATT/CH03/'" :url="streamUrl[2]" index='3' position='right' id="box1-right"></Block>
                 </div>
             </div>
         </transition>
 
-        <transition
+        <!-- <transition
             name="fade"
             v-on:before-enter="fade1beforeEnter"
             v-on:enter="fade1enter"
@@ -35,15 +35,15 @@
             v-on:leave="fade1leave"
             v-on:after-leave="fade1afterLeave"
          >
-            <div class="box box2" ref="box2" v-show="activePage=='box2'?true:false">
+            <div class="box box2" ref="box2" v-if="activePage=='box2'?true:false">
                 <div class="left">
-                    <Block :url="streamUrl[3]" index='4' position='left' id="box2-left"></Block>
+                    <Block :title="titleArr[3]" :ip="ip2" :subscribe="'/ATT/CH01/'" :url="streamUrl[3]" index='4' position='left' id="box2-left"></Block>
                 </div>
                 <div class="mid">
-                    <Block :url="streamUrl[4]" index='5' position='mid' id="box2-mid"></Block>
+                    <Block :title="titleArr[4]" :ip="ip2" :subscribe="'/ATT/CH02/'" :url="streamUrl[4]" index='5' position='mid' id="box2-mid"></Block>
                 </div>
                 <div class="right">
-                    <Block :url="streamUrl[5]" index='6' position='right' id="box2-right"></Block>
+                    <Block :title="titleArr[5]" :ip="ip2" :subscribe="'/ATT/CH03/'" :url="streamUrl[5]" index='6' position='right' id="box2-right"></Block>
                 </div>
             </div>
         </transition>
@@ -59,15 +59,15 @@
             v-on:leave="fade1leave"
             v-on:after-leave="fade1afterLeave"
         >
-            <div class="box box3" ref="box3" v-show="activePage=='box3'?true:false">
+            <div class="box box3" ref="box3" v-if="activePage=='box3'?true:false">
                 <div class="left">
-                    <Block :url="streamUrl[6]" index='7' position='left' id="box3-left"></Block>
+                    <Block :title="titleArr[6]" :ip="ip3" :subscribe="'/ATT/CH01/'" :url="streamUrl[6]" index='7' position='left' id="box3-left"></Block>
                 </div>
                 <div class="mid">
-                    <Block :url="streamUrl[7]" index='8' position='mid' id="box3-mid"></Block>
+                    <Block :title="titleArr[7]" :ip="ip3" :subscribe="'/ATT/CH02/'" :url="streamUrl[7]" index='8' position='mid' id="box3-mid"></Block>
                 </div>
                 <div class="right">
-                    <Block :url="streamUrl[8]" index='9' position='right' id="box3-right"></Block>
+                    <Block :title="titleArr[8]" :ip="ip3" :subscribe="'/ATT/CH03/'" :url="streamUrl[8]" index='9' position='right' id="box3-right"></Block>
                 </div>
             </div>
         </transition>
@@ -84,18 +84,18 @@
             v-on:leave="fade1leave"
             v-on:after-leave="fade1afterLeave"
         >
-            <div class="box box4" ref="box4" v-show="activePage=='box4'?true:false">
+            <div class="box box4" ref="box4" v-if="activePage=='box4'?true:false">
                 <div class="left">
-                    <Block :url="streamUrl[9]" index='10' position='left' id="box4-left"></Block>
+                    <Block :title="titleArr[9]" :ip="ip4" :subscribe="'/ATT/CH01/'" :url="streamUrl[9]" index='10' position='left' id="box4-left"></Block>
                 </div>
                 <div class="mid">
-                    <Block :url="streamUrl[10]" index='11' position='mid' id="box4-mid"></Block>
+                    <Block :title="titleArr[10]" :ip="ip4" :subscribe="'/ATT/CH02/'" :url="streamUrl[10]" index='11' position='mid' id="box4-mid"></Block>
                 </div>
                 <div class="right">
-                    <Block :url="streamUrl[11]" index='12' position='right' id="box4-right"></Block> 
+                    <Block :title="titleArr[11]" :ip="ip4" :subscribe="'/ATT/CH03/'" :url="streamUrl[11]" index='12' position='right' id="box4-right"></Block> 
                 </div>
             </div>
-        </transition>
+        </transition> -->
     </div>
 </template>
 <script>
@@ -105,38 +105,24 @@ export default {
   props: ["activePage"],
   data() {
     return {
+      ip1: "192.168.101.223",
+    //   ip2: "192.168.1.100",
+    //   ip3: "192.168.1.100",
+    //   ip4: "192.168.1.100",
       box1: true,
       box2: false,
       box3: false,
       box4: false,
       boxDOM: ["box1", "box2", "box3", "box4"],
       streamUrl: [
-        "http://192.168.100.141:8080/live?port=1985&app=test&stream=stream1",
-        "http://192.168.100.141:8080/live?port=1985&app=test&stream=stream1",
-        "http://192.168.100.141:8080/live?port=1985&app=test&stream=stream1",
-        "http://192.168.100.141:8080/live?port=1985&app=test&stream=stream1",
-        "http://192.168.100.141:8080/live?port=1985&app=test&stream=stream1",
-        "http://192.168.100.141:8080/live?port=1985&app=test&stream=stream1",
-        "http://192.168.100.141:8080/live?port=1985&app=test&stream=stream1",
-        "http://192.168.100.141:8080/live?port=1985&app=test&stream=stream1",
-        "http://192.168.100.141:8080/live?port=1985&app=test&stream=stream1",
-        "http://192.168.100.141:8080/live?port=1985&app=test&stream=stream1",
-        "http://192.168.100.141:8080/live?port=1985&app=test&stream=stream1",
-        "http://192.168.100.141:8080/live?port=1985&app=test&stream=stream1"
+        "http://192.168.101.223:8080/live?port=1985&app=test&stream=stream1",
+        "http://192.168.101.223:8080/live?port=1985&app=test&stream=stream1",
+        "http://192.168.101.223:8080/live?port=1985&app=test&stream=stream1",
       ],
       titleArr: [
-        "达尔文平台展区",
-        "智能社区解决方案展区",
-        "智能商业解决方案展区",
-        "智能硬件展区",
-        "室内定位系统展区",
-        "智能医院解决方案展区",
-        "智能校园解决方案展区",
-        "智能写字楼展区",
-        "智能警务解决方案展区",
-        "智能安防解决方案展区",
+        "演示点位1",
+        "演示点位2",
         "展厅入口",
-        "前台接待区"
       ]
     };
   },

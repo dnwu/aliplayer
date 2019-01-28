@@ -2,8 +2,8 @@
 <div class="block">
     <div class="block-top">
         <div class='block-title'>
-            <span>{{index}}</span>
-            <span>安防智能展区</span>
+            <span class="index">{{index}}</span>
+            <span class="tit">{{title}}</span>
         </div>
     </div>
     <div class="block-body" :class="position">
@@ -37,12 +37,12 @@ export default {
       list: []
     };
   },
-  props: ["position", "id", "index", "url", "subscribe"],
+  props: ["position", "id", "index", "url", "subscribe", "ip", "title"],
   created() {
     // setInterval(() => {
     //   if (this.list.length > 5) {
     //     this.list = this.list.splice(0, 4);
-    //   }
+    //   }ip
     //   this.list.unshift({
     //     key: new Date()
     //   });
@@ -52,8 +52,8 @@ export default {
     // console.log(this.$mqtt);
     this.initVideo();
 
-    this.client = this.$mqtt.connect("ws://192.168.100.141:9001");
     let _this = this;
+    this.client = this.$mqtt.connect("ws://" + _this.ip + ":9001");
     this.client.on("connect", () => {
       _this.client.subscribe(this.subscribe, err => {
         if (!err) {
@@ -134,14 +134,22 @@ export default {
     position: relative;
     background-image: url(./../assets/Title.png);
     .block-title {
+      display: flex;
       position: absolute;
       left: 50%;
       transform: translateX(-100%);
       color: #fff;
       width: 230px;
+      // width: 100%;
       line-height: 97px;
       font-size: 26px;
       font-weight: 700;
+      .index{
+        width: 20px;
+      }
+      .tit{
+        flex: 1
+      }
     }
   }
   .block-body {
@@ -196,7 +204,7 @@ export default {
       }
       .list-enter,
       .list-leave-to {
-        opacity: 0;
+        opacity: 1;
         // transform: translateX(100px);
       }
       .line {

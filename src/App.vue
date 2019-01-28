@@ -41,7 +41,7 @@ export default {
     },
     changeActivePage(page) {
       // console.log(page);
-      this.activePage = page;
+      // this.activePage = page;
     }
   }
 };
