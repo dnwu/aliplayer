@@ -105,7 +105,7 @@ export default {
   props: ["activePage"],
   data() {
     return {
-      ip1: "192.168.101.223",
+      ip1: "192.168.101.223",   // 图片抓取mqtt地址
     //   ip2: "192.168.1.100",
     //   ip3: "192.168.1.100",
     //   ip4: "192.168.1.100",
@@ -115,7 +115,7 @@ export default {
       box4: false,
       boxDOM: ["box1", "box2", "box3", "box4"],
       streamUrl: [
-        "http://192.168.101.223:8080/live?port=1985&app=test&stream=stream1",
+        "http://192.168.101.223:8080/live?port=1985&app=test&stream=stream1",   //摄像头地址
         "http://192.168.101.223:8080/live?port=1985&app=test&stream=stream1",
         "http://192.168.101.223:8080/live?port=1985&app=test&stream=stream1",
       ],
